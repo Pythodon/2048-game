@@ -9,7 +9,7 @@
 
 #### Right Arrow: Moves all tiles to the right.
 
-### When two tiles with the same number touch, they merge into one tile with their sum. After every move, a new tile (either a 2 or a 4) will appear in a random empty spot. The objective is to create a tile with the number 2048. The game is over when the board is full and there are no more possible moves. Also the different numbers combine like 2, 4, 8, 16, 32, 64, 128 and etc represent an image.
+### When two tiles with the same number touch, they merge into one tile with their sum. After every move, a new tile (either a 2 or a 4) will appear in a random empty spot. The objective is to create a tile with the number 2048. The game is over when the board is full and there are no more possible moves. Also the different numbers combine like 2, 4, 8, 16, 32, 64, 128 and etc represent diffrent image per number.
 
 ## Features
 ### Classic 2048 gameplay
