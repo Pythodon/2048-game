@@ -26,4 +26,4 @@
 
 #### CSS3: For styling the game board and tiles.
 
-### JavaScript: For the game logic and interactivity.
+#### JavaScript: For the game logic and interactivity.
