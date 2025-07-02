@@ -18,6 +18,12 @@
 
 ### Score tracking
 
+### High Score/Best tracking
+
+### Game Over Modal
+
+### Able to start a new game
+
 ### Responsive design for various screen sizes
 
 ## Technologies Used
@@ -27,3 +33,11 @@
 #### CSS3: For styling the game board and tiles.
 
 #### JavaScript: For the game logic and interactivity.
+
+## Screenshots
+
+![Play Screen](https://github.com/Pythodon/2048-game/blob/main/screenshots/Play%20Screen.PNG)
+
+![Game Over](https://github.com/Pythodon/2048-game/blob/main/screenshots/Game%20Over.PNG)
+
+![Game Over](https://github.com/Pythodon/2048-game/blob/main/screenshots/Got%202048.PNG)
