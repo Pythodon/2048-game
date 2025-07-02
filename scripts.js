@@ -1,6 +1,7 @@
 // board will contain the current state of the board.
 let board;
 let score = 0;
+let highScore = 0;
 
 let rows = 4;
 let columns = 4;
@@ -14,13 +15,17 @@ let is8192Exist = false;
 // function that will set the gameboard:
 function setGame(){
 
-	// How can we initalize a 4x4 game board with all tiles set to 0
+	// how can we initalize a 4x4 game board with all tiles set to 0
 	board = [
 		[0, 0, 0, 0],
 		[0, 0, 0, 0],
 		[0, 0, 0, 0],
 		[0, 0, 0, 0]
 	];
+
+	// load high score from local storage
+    highScore = localStorage.getItem("highscore") || 0;
+    document.getElementById('high-score').innerText = highScore;
 
 	// create the game board on the HTML document
 
@@ -40,7 +45,7 @@ function setGame(){
 	}
 
 
-	// This will set two randome tile into 2
+	// this will set two randome tile into 2
 	setOne();
 	setOne();
 
@@ -101,19 +106,29 @@ function handleSlide(event){
 		}
 	}
 
-	document.getElementById('score').innerText = score;
+	// document.getElementById('score').innerText = score;
+
+	updateScores();
 
 	setTimeout(()=> {
 		if(hasLost()){
-			alert("Game Over! You have lost the game. Game will restart.");
-			restartGame();
-			alert("Click any arrow key to restart");
+            showGameOver();
 		}
 
 		else{
 			checkWin();
 		}
 	}, 100)
+}
+
+// updates score and high score display
+function updateScores(){
+    document.getElementById('score').innerText = score;
+    if (score > highScore) {
+        highScore = score;
+        document.getElementById('high-score').innerText = highScore;
+        localStorage.setItem("highscore", highScore);
+    }
 }
 
 function restartGame(){
@@ -123,9 +138,22 @@ function restartGame(){
 		[0, 0, 0, 0],
 		[0, 0, 0, 0]
 	];
+    score = 0;
+    is2048Exist = false;
+    is4096Exist = false;
+    is8192Exist = false;
 
-	score = 0;
+    // Reset all tiles on the board
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            let tile = document.getElementById(r + "-" + c);
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+
 	setOne(); //New tile
+    setOne(); //New tile
 }
 
 // EventListener
@@ -164,7 +192,7 @@ function slideLeft(){
 
 function slideRight(){
 	for(let r  = 0; r < rows; r++){
-		
+
 		// [4, 2, 2, 0] => [0, 0, 4, 4]
 		let row = board[r];
 		let originalRow = row.slice();
@@ -215,7 +243,7 @@ function slideUp(){
 
 			let tile = document.getElementById(r + "-" + c);
 			let num = board[r][c];
-			
+
 			if(originalCol[r] !== num && num != 0){
 				tile.style.animation = "slide-from-bottom 0.3s"
 				setTimeout(() => {
@@ -338,7 +366,7 @@ function setOne(){
 
 	}
 
-	
+
 }
 
 
@@ -403,18 +431,56 @@ function canMoveDown(){
 	return false;
 }
 
+// Show the modal when the "New Game" button is clicked.
+// Hide the modal when the "Cancel" button is clicked.
+// When "Start New Game" is confirmed.
+const newGameBtn = document.getElementById('new-game-btn');
+const newGameModal = document.getElementById('new-game-modal');
+const confirmNewGameBtn = document.getElementById('confirm-new-game-btn');
+const cancelNewGameBtn = document.getElementById('cancel-new-game-btn');
+const gameOverModal = document.getElementById('game-over-modal');
+const playAgainBtn = document.getElementById('play-again-btn');
+const finalScore = document.getElementById('final-score');
+
+newGameBtn.addEventListener('click', () => {
+    newGameModal.classList.add('visible');
+});
+
+cancelNewGameBtn.addEventListener('click', () => {
+    newGameModal.classList.remove('visible');
+});
+
+
+confirmNewGameBtn.addEventListener('click', () => {
+    restartGame();
+    updateScores();
+    newGameModal.classList.remove('visible');
+});
+
+playAgainBtn.addEventListener('click', () => {
+    restartGame();
+    updateScores();
+    gameOverModal.classList.remove('visible');
+});
+
+
+function showGameOver() {
+    finalScore.innerText = score;
+    gameOverModal.classList.add('visible');
+}
+
 // THis function will if the player won the game
 function checkWin(){
 	for( let r = 0 ; r < rows; r++){
 		for(let c = 0; c < columns; c++){
-			if(board[r][c] == 2048 && is2048Exist ==false){
+			if(board[r][c] == 2048 && is2048Exist == false){
 				alert('You win! You got the 2048!');
 				is2048Exist = true;
 			}else if(board[r][c] == 4096 && is4096Exist == false){
 				alert('You are unstoppable at 4096! You are fantastically unstoppale!');
 				is4096Exist = true;
 			}else if (board[r][c] == 8192 && is8192Exist == false){
-				alert('Victoy! You have reached 8192! You are incredibly awesome!');
+				alert('Victory! You have reached 8192! You are incredibly awesome!');
 				is8192Exist = true;
 			}
 		}
@@ -444,5 +510,3 @@ function hasLost(){
 
 	return true;
 }
-
-

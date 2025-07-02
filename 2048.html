@@ -4,31 +4,37 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta property="og:title" content="I coded a game with Zuitt!" />
-        <!-- Provides a brief description of your webpage that will be displayed beneath the title in a social media post. -->
         <meta property="og:description" content="This Game Development project is powered by Zuitt Coding Bootcamp" />
-        <!-- Specifies the name of the website or the brand associated with the content. This helps identify the source of the content in social media posts. -->
         <meta property="og:site_name" content="I coded a game with Zuitt!" />
-        <!-- Defines the URL of an image that will be shown alongside the title and description when your webpage is shared. (thumbnail) -->
         <meta property="og:image" content="https://pythodon.github.io/2048-game/images/story-thumbnail-2048.jpg" />
-        <!-- This ensures the image is accessible over a secure connection, which is important for platforms that require HTTPS. -->
         <meta property="og:image:secure_url" content="https://pythodon.github.io/2048-game/images/story-thumbnail-2048.jpg" />
 
 		<title>2048</title>
 
-		<!--Link of CSS file  -->
 		<link rel="stylesheet" type="text/css" href="./styles.css">
 	</head>
 
 	<body>
+		<div class="game-controls-container">
+			<button id="new-game-btn">New Game</button>
+			<div class = "share-button-container">
+				<div class = "share-label">
+					Share:
+				</div>
+				<div class = "share-icons">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://pythodon.github.io/2048-game/" target = "_blank">
+						<img src="./images/share_2048-fb.svg">
+					</a>
+				</div>
+			</div>
+		</div>
 		<div class = "container">
-			<!-- h1-h6 - heading tags-->
 			<h1>2048</h1>
 			<h2>Created By: Alvendia, Rayzen Louise C.<h2>
-			<!-- hr - horizontal -->
 			<hr id = "top-line">
 
 			<div class = "header-container">
-				
+
 				<div class = "score-container">
 					<div class = "score-label">
 						Score
@@ -39,68 +45,58 @@
 					</div>
 				</div>
 
-				<div class = "share-button-container">
-					<div class = "share-label">
-						Share:
+				<div class = "highs-container">
+					<div class = "score-label">
+						Best
 					</div>
 
-					<div class = "share-icons">
-						<a href="https://www.facebook.com/sharer/sharer.php?u=https://pythodon.github.io/2048-game/" target = "_blank">
-							<img src="./images/share_2048-fb.svg">
-						</a>
-						
+					<div id = high-score>
+						0
 					</div>
-					
 				</div>
-				
 			</div>
 
-			<!-- This serve as the board of our game. -->
 			<div id = "board">
-				<!-- First Row -->
-				<!-- <div class = "x2 tile">[r0, c0]</div>
-				<div class = "x4 tile">[r0, c1]</div>
-				<div class = "x8 tile">[r0, c2]</div>
-				<div class = "x8 tile">[r0, c3]</div> -->
-
-				<!-- Second Row -->
-				<!-- <div class = "x32 tile">[r1, c0]</div>
-				<div class = "x64 tile">[r1, c1]</div>
-				<div class = "x128 tile">[r1, c2]</div>
-				<div class = "x256 tile">[r1, c3]</div> -->
-
-				<!-- Third Row -->
-				<!-- <div class = "x512 tile">[r2, c0]</div>
-				<div class = "x1024 tile">[r2, c1]</div>
-				<div class = "x2048 tile">[r2, c2]</div>
-				<div class = "x4096 tile">[r2, c3]</div> -->
-
-				<!--Fourth Row -->
-				<!-- <div class = "x8192 tile">[r3, c0]</div>
-				<div class = "tile">[r3, c1]</div>
-				<div class = "tile">[r3, c2]</div>
-				<div class = "tile">[r3, c3]</div> -->
 			</div>
-			
+
 		</div>
+
+		<div class="modal-overlay" id="new-game-modal">
+            <div class="modal-content">
+                <h2>Start a new game?</h2>
+                <p>Your current progress will be lost.</p>
+                <div class="modal-buttons">
+                    <button id="confirm-new-game-btn">Start New Game</button>
+                    <button id="cancel-new-game-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+		
+		<div class="modal-overlay" id="game-over-modal">
+            <div class="modal-content">
+                <h2>Game Over</h2>
+                <p>You scored <strong id="final-score">0</strong> points!</p>
+                <div class="modal-buttons">
+                    <button id="play-again-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
 
 		<footer>
             <a href="https://www.facebook.com/R8yz3n" target="blank">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a href="https://x.com/zuittco" target="blank">
+            <a href="#" target="blank">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="https://www.instagram.com/zuitt_co/" target="blank">
+            <a href="#" target="blank">
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </footer>
 
 
-		<!-- Script of the game -->
 		<script type="text/javascript" src = "./scripts.js"></script>
 
-		<!-- Font awesome Kit -->
 		<script src="https://kit.fontawesome.com/23518aaeca.js" crossorigin="anonymous"></script>
 	</body>
 </html>
